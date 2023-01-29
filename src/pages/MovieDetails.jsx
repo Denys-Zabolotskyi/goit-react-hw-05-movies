@@ -1,17 +1,57 @@
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { fetchMovieById } from 'services/api';
+
 export const MovieDetails = () => {
+  const { movieId } = useParams();
+  const [moviInfo, setmoviInfo] = useState({});
+  // const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getMovieById = async () => {
+      try {
+        const movie = await fetchMovieById(movieId);
+        console.log(movie);
+        setmoviInfo(movie);
+      } catch (error) {
+        console.log(error);
+      }
+      // finally {
+      //   setIsLoading(false);
+      // }
+    };
+    getMovieById();
+  }, [movieId]);
+
+  const { title, poster_path, vote_average, release_date, overview, genres } =
+    moviInfo;
+
   return (
-    <section>
-      <a href="/"> Go back</a>
+    <div>
       <div>
-        <img
-          src="https://wallpapers.com/images/featured/plzcoaffexgf4h81.jpg"
-          alt=""
-        />
+        <img src="" alt="" />
       </div>
       <div>
-        <a href="">Cast</a>
-        <a href="">Reviews</a>
+        <h2>
+          {title}
+          <p></p>
+          <p></p>
+        </h2>
+        <h2>
+          <p></p>
+        </h2>
+        <h2>
+          <p></p>
+        </h2>
       </div>
-    </section>
+      <ul>
+        <li>
+          <a href="">Cast</a>
+        </li>
+        <li>
+          <a href="">Reviews</a>
+        </li>
+      </ul>
+    </div>
   );
 };

@@ -11,7 +11,7 @@ export const Home = () => {
     const getTrendMovies = async () => {
       try {
         const moviesList = await fetchTrendMovies();
-        setMovies(movies => [...movies, ...moviesList]);
+        setMovies(moviesList);
       } catch (error) {
         console.log(error);
       } finally {
