@@ -33,6 +33,18 @@ export const fetchDataByCast = async movieId => {
     );
     return data;
   } catch (error) {
+    // throw error;
+    console.error('Something wrong! Can not search films by ID' + error);
+  }
+};
+export const fetchDataByReviews = async movieId => {
+  try {
+    const { data } = await axios.get(
+      `${BASE_URL}/movie/${movieId}/reviews?api_key=${KEY}`
+    );
+    return data;
+  } catch (error) {
+    // throw error;
     console.error('Something wrong! Can not search films by ID' + error);
   }
 };

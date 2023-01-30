@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieById } from 'services/api';
 
@@ -64,10 +64,11 @@ export const MovieDetails = () => {
             <AdditionalInfoLink to="cast">Cast</AdditionalInfoLink>
           </li>
           <li>
-            <AdditionalInfoLink>Review</AdditionalInfoLink>
+            <AdditionalInfoLink to="reviews">Review</AdditionalInfoLink>
           </li>
         </ul>
       </div>
+      <Outlet />
     </MovieBox>
   );
 };

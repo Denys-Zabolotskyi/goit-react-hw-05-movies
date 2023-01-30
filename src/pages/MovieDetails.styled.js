@@ -58,7 +58,6 @@ export const AdditionalInfo = styled.div``;
 export const AdditionalInfoLink = styled(NavLink)`
   color: black;
   font-size: 26px;
-
   &:hover,
   &:focus {
     color: red;
