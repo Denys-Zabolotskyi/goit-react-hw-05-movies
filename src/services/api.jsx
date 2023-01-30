@@ -13,15 +13,26 @@ export const fetchTrendMovies = async () => {
   }
 };
 
-export const fetchMovieById = async monieId => {
+export const fetchMovieById = async movieId => {
   try {
     const { data } = await axios.get(
-      `${BASE_URL}/movie/${monieId}?api_key=${KEY}&page=1`
+      `${BASE_URL}/movie/${movieId}?api_key=${KEY}&page=1`
     );
     return data;
   } catch (error) {
     console.error(
       'Something wrong! Can not get trends movies by ID now.' + error
     );
+  }
+};
+
+export const fetchDataByCast = async movieId => {
+  try {
+    const { data } = await axios.get(
+      `${BASE_URL}/movie/${movieId}/credits?api_key=${KEY}`
+    );
+    return data;
+  } catch (error) {
+    console.error('Something wrong! Can not search films by ID' + error);
   }
 };
