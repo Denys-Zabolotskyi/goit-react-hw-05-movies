@@ -34,9 +34,8 @@ export const MovieDetails = () => {
     };
     getMovieById();
   }, [movieId]);
-
-  const { title, poster_path, vote_average, release_date, overview, genres } =
-    moviInfo;
+  //vote_average, release_date,
+  const { title, poster_path, overview, genres } = moviInfo;
   // console.log(genres);
   return (
     <MovieBox>
