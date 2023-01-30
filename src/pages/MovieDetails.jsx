@@ -21,7 +21,9 @@ export const MovieDetails = () => {
   const posterPath = `https://www.themoviedb.org/t/p/w500${moviInfo?.poster_path}`;
   const releaseYear =
     new Date(Date.parse(moviInfo?.release_date)).getFullYear() || '';
+  const userScore = Math.round(moviInfo?.vote_average * 10);
   const genres = moviInfo?.genres.map(({ name }) => name).join(', ');
+  console.log(moviInfo);
 
   useEffect(() => {
     const getMovieById = async () => {
@@ -47,6 +49,7 @@ export const MovieDetails = () => {
             <MainTitle>
               {moviInfo.title} ({releaseYear})
             </MainTitle>
+            <TitleInfoText>User Score: {userScore}%</TitleInfoText>
             <SecondTitle>Overview</SecondTitle>
             <TitleInfoText>{moviInfo.overview}</TitleInfoText>
             <SecondTitle>Genres</SecondTitle>
