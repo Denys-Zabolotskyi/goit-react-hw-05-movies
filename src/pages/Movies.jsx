@@ -1,21 +1,18 @@
+import { SearchBar } from 'components/Searchbar/Searchbar';
 import { useState, useEffect } from 'react';
-import { Toaster } from 'react-hot-toast';
+import { fetchSearchData } from 'services/api';
 import { toast } from 'react-hot-toast';
 import { MovieList } from 'components/MovieList/MovieList';
-import { fetchSearchData } from 'services/api';
-
-import { SearchBar } from 'components/Searchbar/Searchbar';
 
 export const Movies = () => {
   const [searchName, setSearchName] = useState('');
+  const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const [movies, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = inputSearchName => {
     if (inputSearchName !== searchName) {
       setSearchName(inputSearchName);
-      setItems([]);
+      setMovies([]);
       setPage(1);
     } else {
       setSearchName(inputSearchName);
@@ -28,30 +25,33 @@ export const Movies = () => {
     }
     const findMovies = async () => {
       try {
-        setIsLoading(true);
-        const movies = await fetchSearchData(searchName, page);
-        movies.length === 0
+        // setIsLoading(true);
+        // console.log(searchName);
+        const dataResponse = await fetchSearchData(searchName, page);
+        // console.log(dataResponse);
+        dataResponse.results.length === 0
           ? toast.error(
-              'Sorry! There is no photo with this name. Try something else!',
+              'Sorry! There is no movies with this name. Try something else!',
               {
                 position: 'top-center',
                 duration: 2000,
               }
             )
-          : setItems(items => [...movies, ...movies]);
+          : setMovies(movies => [...movies, ...dataResponse.results]);
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(false);
+        // setIsLoading(false);
       }
     };
     findMovies();
   }, [page, searchName]);
+
   return (
     <>
+      {/* movies={movies.results} */}
       <SearchBar onSubmit={handleFormSubmit} />
-      <Toaster />
-      <MovieList movies={movies} />
+      {movies && <MovieList movies={movies} />}
     </>
   );
 };

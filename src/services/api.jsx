@@ -49,14 +49,12 @@ export const fetchDataByReviews = async movieId => {
   }
 };
 
-export const fetchSearchData = async value => {
-  // const url = 'https://api.themoviedb.org/3/search/movie';
+export const fetchSearchData = async (query, page) => {
   try {
     const { data } = await axios.get(
-      // `${url}?api_key=${KEY}&query=${value}&page=1`
-      `${BASE_URL}/search/movie?api_key=${KEY}&query=${value}&page=1`
+      `${BASE_URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
     );
-    return data.results;
+    return data;
   } catch (error) {
     console.error('Something wrong! Can not search films' + error);
   }
