@@ -24,6 +24,7 @@ export const SearchBar = ({ onSubmit }) => {
     };
   };
   return (
+    // onSubmit={handleSubmit}
     <SearchbarBox>
       <Form onSubmit={handleSubmit}>
         <Input

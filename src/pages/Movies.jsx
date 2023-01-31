@@ -9,7 +9,7 @@ import { SearchBar } from 'components/Searchbar/Searchbar';
 export const Movies = () => {
   const [searchName, setSearchName] = useState('');
   const [page, setPage] = useState(1);
-  const [items, setItems] = useState([]);
+  const [movies, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = inputSearchName => {
@@ -38,7 +38,7 @@ export const Movies = () => {
                 duration: 2000,
               }
             )
-          : setItems(items => [...items, ...movies]);
+          : setItems(items => [...movies, ...movies]);
       } catch (error) {
         console.log(error);
       } finally {
@@ -51,7 +51,7 @@ export const Movies = () => {
     <>
       <SearchBar onSubmit={handleFormSubmit} />
       <Toaster />
-      <MovieList items={items} />
+      <MovieList movies={movies} />
     </>
   );
 };
