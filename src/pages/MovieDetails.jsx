@@ -23,7 +23,6 @@ export const MovieDetails = () => {
     new Date(Date.parse(moviInfo?.release_date)).getFullYear() || '';
   const userScore = Math.round(moviInfo?.vote_average * 10);
   const genres = moviInfo?.genres.map(({ name }) => name).join(', ');
-  console.log(moviInfo);
 
   useEffect(() => {
     const getMovieById = async () => {

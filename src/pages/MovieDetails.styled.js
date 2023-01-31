@@ -52,8 +52,6 @@ export const TitleInfoText = styled.p`
   font-size: 18px;
   margin-bottom: 10px;
 `;
-//additional information
-export const AdditionalInfo = styled.div``;
 
 export const AdditionalInfoLink = styled(NavLink)`
   color: black;

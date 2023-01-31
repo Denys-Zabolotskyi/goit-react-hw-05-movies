@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const List = styled.ul`
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
   justify-content: space-around;
-  list-style: none;
 `;
 
 export const MovieItem = styled.li`

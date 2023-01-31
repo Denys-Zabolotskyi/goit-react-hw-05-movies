@@ -48,3 +48,16 @@ export const fetchDataByReviews = async movieId => {
     console.error('Something wrong! Can not search films by ID' + error);
   }
 };
+
+export const fetchSearchData = async value => {
+  const url = 'https://api.themoviedb.org/3/search/movie';
+  try {
+    const { data } = await axios.get(
+      // `${url}?api_key=${KEY}&query=${value}&page=1`
+      `${BASE_URL}/search/movie?api_key=${KEY}&query=${value}&page=1`
+    );
+    return data.results;
+  } catch (error) {
+    console.error('Something wrong! Can not search films' + error);
+  }
+};
