@@ -50,7 +50,7 @@ export const fetchDataByReviews = async movieId => {
 };
 
 export const fetchSearchData = async value => {
-  const url = 'https://api.themoviedb.org/3/search/movie';
+  // const url = 'https://api.themoviedb.org/3/search/movie';
   try {
     const { data } = await axios.get(
       // `${url}?api_key=${KEY}&query=${value}&page=1`

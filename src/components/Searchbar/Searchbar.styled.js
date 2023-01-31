@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+export const SearchbarBox = styled.div``;
+
 export const Form = styled.form`
   display: flex;
   border: 1px solid #d1d5db;
