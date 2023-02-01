@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-// import { useSearchParams } from 'react-router-dom';
 import { Form, Button, Input } from './Searchbar.styled';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
@@ -40,4 +40,8 @@ export const SearchBar = ({ onSubmit }) => {
       </Button>
     </Form>
   );
+};
+
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
