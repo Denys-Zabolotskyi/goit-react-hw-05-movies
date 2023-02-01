@@ -3,7 +3,6 @@ import { List, MovieItem, Link } from './MovieList.styled';
 
 export const MovieList = ({ movies }) => {
   const location = useLocation();
-  // console.log(location.state);
   return (
     <List>
       {movies.map(({ id, title }) => (

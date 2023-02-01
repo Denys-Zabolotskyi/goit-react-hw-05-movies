@@ -24,24 +24,6 @@ export const SearchBar = ({ onSubmit }) => {
     onSubmit(inputSearchName);
     setInputSearchName('');
   };
-  //////////////////useSearchParams////////////////
-  // const [searchParams, setSearchParams] = useSearchParams({ searchName: '' });
-  // const searchName = searchParams.get('searchName');
-  // console.log(searchParams);
-
-  // const handleSubmit = evt => {
-  //   evt.preventDefault();
-  //   if (searchName.trim() === '') {
-  //     toast.error('Please, enter search word!', {
-  //       position: 'top-center',
-  //       duration: 2000,
-  //     });
-  //     return;
-  //   }
-  //   onSubmit(searchName);
-  //   setSearchParams('');
-  // };
-  //////////////////useSearchParams////////////////
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -51,9 +33,6 @@ export const SearchBar = ({ onSubmit }) => {
         autoFocus
         placeholder="Search movies"
         onChange={handleNameChange}
-        // onChange={e =>
-        //   setSearchParams({ searchName: e.currentTarget.value.trim() })
-        // }
         value={inputSearchName}
       />
       <Button type="submit">

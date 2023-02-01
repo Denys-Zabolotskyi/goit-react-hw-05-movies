@@ -1,13 +1,13 @@
 import GlobalStyle from 'components/App/globalStyles';
 import { Outlet } from 'react-router-dom';
 import { Container, Header, Link } from './SharedLayout.styled';
-// import { Toaster } from 'react-hot-toast';
+import { Suspense } from 'react';
+import { Loader } from 'components/Loader/Loader';
 
 export const SharedLayout = () => {
   return (
     <>
       <GlobalStyle />
-      {/* <Toaster /> */}
       <Container>
         <Header>
           <nav>
@@ -17,7 +17,9 @@ export const SharedLayout = () => {
             <Link to="/movies">Movies</Link>
           </nav>
         </Header>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </Container>
     </>
   );

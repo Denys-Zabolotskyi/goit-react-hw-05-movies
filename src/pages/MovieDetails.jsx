@@ -1,5 +1,5 @@
 import { useParams, Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
 
@@ -14,14 +14,13 @@ import {
   SecondTitle,
   TitleInfoText,
 } from './MovieDetails.styled';
+import { Loader } from 'components/Loader/Loader';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [moviInfo, setmoviInfo] = useState(null);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
-  console.log(location.state);
-
   const posterPath = `https://www.themoviedb.org/t/p/w500${moviInfo?.poster_path}`;
   const releaseYear =
     new Date(Date.parse(moviInfo?.release_date)).getFullYear() || '';
@@ -72,7 +71,11 @@ export const MovieDetails = () => {
           </li>
         </ul>
       </div>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </MovieBox>
   );
 };
+
+export default MovieDetails;

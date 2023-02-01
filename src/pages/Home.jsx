@@ -1,10 +1,9 @@
-// import { Link } from 'react-router-dom';
-
 import { useState, useEffect } from 'react';
 import { MovieList } from 'components/MovieList/MovieList';
 import { fetchTrendMovies } from 'services/api';
+import { Loader } from 'components/Loader/Loader';
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -24,11 +23,14 @@ export const Home = () => {
   return (
     <section>
       <h1>Trandy Today</h1>
+
       {isLoading && movies.length === 0 ? (
-        <h1>Loading...</h1>
+        <Loader />
       ) : (
         <MovieList movies={movies} />
       )}
     </section>
   );
 };
+
+export default Home;

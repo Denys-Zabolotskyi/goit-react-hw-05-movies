@@ -4,11 +4,12 @@ import { SearchBar } from 'components/Searchbar/Searchbar';
 import { fetchSearchData } from 'services/api';
 import { toast } from 'react-hot-toast';
 import { MovieList } from 'components/MovieList/MovieList';
+import { Loader } from 'components/Loader/Loader';
 
-export const Movies = () => {
-  // const [searchName, setSearchName] = useState('');
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [IsLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
 
@@ -16,13 +17,6 @@ export const Movies = () => {
     setSearchParams(inputSearchName !== '' ? { query: inputSearchName } : {});
     setMovies([]);
     setPage(1);
-    // if (inputSearchName !== searchName) {
-    //   setSearchName(inputSearchName);
-    //   setMovies([]);
-    //   setPage(1);
-    // } else {
-    //   setSearchName(inputSearchName);
-    // }
   };
 
   useEffect(() => {
@@ -31,10 +25,8 @@ export const Movies = () => {
     }
     const findMovies = async () => {
       try {
-        // setIsLoading(true);
-        // console.log(searchName);
+        setIsLoading(true);
         const dataResponse = await fetchSearchData(query, page);
-        // console.log(dataResponse);
         dataResponse.results.length === 0
           ? toast.error(
               'Sorry! There is no movies with this name. Try something else!',
@@ -47,7 +39,7 @@ export const Movies = () => {
       } catch (error) {
         console.log(error);
       } finally {
-        // setIsLoading(false);
+        setIsLoading(false);
       }
     };
     findMovies();
@@ -55,9 +47,11 @@ export const Movies = () => {
 
   return (
     <>
-      {/* movies={movies.results} */}
       <SearchBar onSubmit={handleFormSubmit} />
+      {IsLoading && <Loader />}
       {movies && <MovieList movies={movies} />}
     </>
   );
 };
+
+export default Movies;
