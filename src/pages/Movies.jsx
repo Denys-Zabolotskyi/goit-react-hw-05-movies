@@ -1,33 +1,39 @@
-import { SearchBar } from 'components/Searchbar/Searchbar';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { SearchBar } from 'components/Searchbar/Searchbar';
 import { fetchSearchData } from 'services/api';
 import { toast } from 'react-hot-toast';
 import { MovieList } from 'components/MovieList/MovieList';
 
 export const Movies = () => {
-  const [searchName, setSearchName] = useState('');
+  // const [searchName, setSearchName] = useState('');
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
 
   const handleFormSubmit = inputSearchName => {
-    if (inputSearchName !== searchName) {
-      setSearchName(inputSearchName);
-      setMovies([]);
-      setPage(1);
-    } else {
-      setSearchName(inputSearchName);
-    }
+    setSearchParams(inputSearchName !== '' ? { query: inputSearchName } : {});
+    setMovies([]);
+    setPage(1);
+    // if (inputSearchName !== searchName) {
+    //   setSearchName(inputSearchName);
+    //   setMovies([]);
+    //   setPage(1);
+    // } else {
+    //   setSearchName(inputSearchName);
+    // }
   };
 
   useEffect(() => {
-    if (!searchName) {
+    if (!query) {
       return;
     }
     const findMovies = async () => {
       try {
         // setIsLoading(true);
         // console.log(searchName);
-        const dataResponse = await fetchSearchData(searchName, page);
+        const dataResponse = await fetchSearchData(query, page);
         // console.log(dataResponse);
         dataResponse.results.length === 0
           ? toast.error(
@@ -45,7 +51,7 @@ export const Movies = () => {
       }
     };
     findMovies();
-  }, [page, searchName]);
+  }, [page, query]);
 
   return (
     <>

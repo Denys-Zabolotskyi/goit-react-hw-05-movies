@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useSearchParams } from 'react-router-dom';
 import { Form, Button, Input } from './Searchbar.styled';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
@@ -8,7 +9,6 @@ export const SearchBar = ({ onSubmit }) => {
 
   const handleNameChange = evt => {
     const target = evt.currentTarget.value.toLowerCase();
-    // console.log(target);
     setInputSearchName(target);
   };
 
@@ -24,14 +24,37 @@ export const SearchBar = ({ onSubmit }) => {
     onSubmit(inputSearchName);
     setInputSearchName('');
   };
+  //////////////////useSearchParams////////////////
+  // const [searchParams, setSearchParams] = useSearchParams({ searchName: '' });
+  // const searchName = searchParams.get('searchName');
+  // console.log(searchParams);
+
+  // const handleSubmit = evt => {
+  //   evt.preventDefault();
+  //   if (searchName.trim() === '') {
+  //     toast.error('Please, enter search word!', {
+  //       position: 'top-center',
+  //       duration: 2000,
+  //     });
+  //     return;
+  //   }
+  //   onSubmit(searchName);
+  //   setSearchParams('');
+  // };
+  //////////////////useSearchParams////////////////
+
   return (
     <Form onSubmit={handleSubmit}>
       <Input
         type="text"
         autocomplete="off"
+        autoFocus
         placeholder="Search movies"
         onChange={handleNameChange}
-        value={inputSearchName}
+        // onChange={e =>
+        //   setSearchParams({ searchName: e.currentTarget.value.trim() })
+        // }
+        // value={searchName}
       />
       <Button type="submit">
         <AiOutlineSearch />
