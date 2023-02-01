@@ -54,7 +54,7 @@ export const SearchBar = ({ onSubmit }) => {
         // onChange={e =>
         //   setSearchParams({ searchName: e.currentTarget.value.trim() })
         // }
-        // value={searchName}
+        value={inputSearchName}
       />
       <Button type="submit">
         <AiOutlineSearch />

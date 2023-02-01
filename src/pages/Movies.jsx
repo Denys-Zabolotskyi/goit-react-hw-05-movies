@@ -43,7 +43,7 @@ export const Movies = () => {
                 duration: 2000,
               }
             )
-          : setMovies(movies => [...movies, ...dataResponse.results]);
+          : setMovies(dataResponse.results);
       } catch (error) {
         console.log(error);
       } finally {
