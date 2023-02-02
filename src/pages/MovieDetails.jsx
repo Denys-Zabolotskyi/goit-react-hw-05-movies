@@ -21,6 +21,7 @@ const MovieDetails = () => {
   const [moviInfo, setmoviInfo] = useState(null);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
+
   const posterPath = `https://www.themoviedb.org/t/p/w500${moviInfo?.poster_path}`;
   const releaseYear =
     new Date(Date.parse(moviInfo?.release_date)).getFullYear() || '';
@@ -64,10 +65,14 @@ const MovieDetails = () => {
         <SecondTitle>Additional info</SecondTitle>
         <ul>
           <li>
-            <AdditionalInfoLink to="cast">Cast</AdditionalInfoLink>
+            <AdditionalInfoLink to="cast" state={{ from: backLinkHref }}>
+              Cast
+            </AdditionalInfoLink>
           </li>
           <li>
-            <AdditionalInfoLink to="reviews">Review</AdditionalInfoLink>
+            <AdditionalInfoLink to="reviews" state={{ from: backLinkHref }}>
+              Review
+            </AdditionalInfoLink>
           </li>
         </ul>
       </div>
